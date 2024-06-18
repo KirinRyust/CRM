@@ -123,8 +123,8 @@ function obtenerDatosActualizar(p_id_gestion) {
 
 }
 function completarEtiqueta(element,index,arr) {
-  var mod_comentario = element.comentarios;
-  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar esta gestión? <b>"+ mod_comentario +"</b>";
+  var comentario = element.comentarios;
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar esta gestión? <b>"+ comentario +"</b>";
 }
 function completarFormulario(element,index,arr) {
   var mod_comentario = element.comentarios;
