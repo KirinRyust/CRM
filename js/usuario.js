@@ -12,42 +12,45 @@ function agregarUsuario(){
   var usuario = document.getElementById("txt_username").value;
   var contraseña = document.getElementById("txt_password").value;
 
+  if ((dv >= 0 && dv <= 9) || dv.toUpperCase() === 'k') {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var fechaHoraActual = obtenerFechaHora();
 
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-  var fechaHoraActual = obtenerFechaHora();
+    const raw = JSON.stringify({
+      "id_usuario": id_usuario,
+      "dv": dv,
+      "nombres": nombres,
+      "apellidos": apellidos,
+      "email": email,
+      "celular": celular,
+      "username": usuario,
+      "password": contraseña,
+      "fecha_registro": fechaHoraActual
+    });
 
-  const raw = JSON.stringify({
-    "id_usuario": id_usuario,
-    "dv": dv,
-    "nombres": nombres,
-    "apellidos": apellidos,
-    "email": email,
-    "celular": celular,
-    "username": usuario,
-    "password": contraseña,
-    "fecha_registro": fechaHoraActual
-  });
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
 
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow"
-  };
-
-  fetch("http://144.126.210.74:8080/api/usuario", requestOptions)
-  .then((response) => {
-    if(response.status == 200){
-      alert("Usuario agregado correctamente");
-      location.href="listar.html";
-    }
-    if(response.status == 400){
-      alert("Error al agregar usuario falta uno o mas datos");
-    }
-  })
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
+    fetch("http://144.126.210.74:8080/api/usuario", requestOptions)
+   .then((response) => {
+      if(response.status == 200){
+        alert("Usuario creado correctamente");
+        location.href="listar.html";
+      }
+      if(response.status == 400){
+        alert("Error al agregar usuario falta uno o mas datos");
+      }
+    })
+   .then((result) => console.log(result))
+   .catch((error) => console.error(error));
+  } else {
+    alert("El DV debe ser un número entre 0 y 9 o la letra 'k'");
+  }
 }
 function listarUsuario(){
   const requestOptions = {
