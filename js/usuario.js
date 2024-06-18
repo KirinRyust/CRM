@@ -126,7 +126,9 @@ function obtenerDatosActualizar(p_id_usuario){
 
 function completarEtiqueta(element, index, arr){
   var nombre_usuario = element.nombres;
-  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar este usuario?<b> " + nombre_usuario + "</b>";
+  var apellido_usuario = element.apellidos;
+  var nombre_completo = (nombre_usuario +" "+ apellido_usuario)
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar este usuario?<b> " + nombre_completo + "</b>";
 }
 
 function completarFormulario(element, index, arr){

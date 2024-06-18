@@ -124,7 +124,9 @@ function obtenerDatosActualizar(p_id_gestion) {
 }
 function completarEtiqueta(element,index,arr) {
   var comentario = element.comentarios;
-  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar esta gestión? <b>"+ comentario +"</b>";
+  var id_gestion = element.id_gestion;
+  var datos_eliminar = ("comentario: " + comentario +" id de gestion : "+ id_gestion)
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar esta gestión? <b>"+ datos_eliminar +"</b>";
 }
 function completarFormulario(element,index,arr) {
   var mod_comentario = element.comentarios;
