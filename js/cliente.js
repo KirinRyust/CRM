@@ -119,8 +119,10 @@ function obtenerDatosActualizar(p_id_cliente){
 }
 
 function completarEtiqueta(element, index, arr){
-  var nombre_cliente = element.nombres;
-  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar este cliente?<b> " + nombre_cliente + "</b>";
+  var nombre_cliente = element.nombres
+  var apellido_cliente = element.apellidos
+  var nombre_completo = (nombre_cliente +" "+apellido_cliente)
+  document.getElementById('lbl_eliminar').innerHTML ="¿Desea eliminar este cliente?<b>" + nombre_completo + "</b>";
 }
 
 function completarFormulario(element, index, arr){
