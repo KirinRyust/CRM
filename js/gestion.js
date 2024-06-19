@@ -9,6 +9,10 @@ var id_tipo_gestion = document.getElementById("sel_id_tipo_gestion").value;
 var id_resultado = document.getElementById("sel_id_resultado").value;
 var comentarios = document.getElementById("txt_comentarios").value;
 
+if(comentarios.trim()== ""){
+  alert("Se debe ingresar comentario");
+  return;
+}
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
@@ -36,7 +40,7 @@ fetch("http://144.126.210.74:8080/api/gestion", requestOptions)
       alert("Gestión creada correctamente");
       location.href="listar.html";
     }
-    if(response.status == 400) {
+    if(response.status == 400 && comentarios != " ") {
       alert("Error al crear gestión");
     }
   })
@@ -135,6 +139,11 @@ function completarFormulario(element,index,arr) {
 }
 function actualizarGestion(){
   var comentarios = document.getElementById("txt_comentarios").value;
+
+  if(comentarios.trim()== ""){
+    alert("Se debe ingresar comentario");
+    return;
+  }
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");

@@ -6,6 +6,10 @@ function agregarResultado(){
   // Obtenemos valor del tipo de gestion desde el formulario
   var nombre_resultado = document.getElementById("txt_nombre_resultado").value;
 
+  if (nombre_resultado.trim()==""){
+    alert("Debe ingresar un nombre para el resultado");
+    return;
+  }
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   var fechaHoraActual = obtenerFechaHora();
@@ -119,6 +123,11 @@ function completarFormulario(element, index, arr){
 function actualizarResultado(){
   // Obtenemos valor del tipo de gestion desde el formulario
   var nombre_resultado = document.getElementById("txt_nombre_resultado").value;
+
+  if (nombre_resultado.trim()==""){
+    alert("El campo no puede quedar en blanco");
+    return;
+  }
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");

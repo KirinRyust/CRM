@@ -6,6 +6,10 @@ function agregarTipoGestion(){
   // Obtenemos valor del tipo de gestion desde el formulario
   var nombre_tipo_gestion = document.getElementById("txt_nombre_tipo_gestion").value;
 
+  if(nombre_tipo_gestion.trim()==""){
+    alert("Debe ingresar un nombre para el tipo de gestión");
+    return;
+  }
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   var fechaHoraActual = obtenerFechaHora();
@@ -120,6 +124,10 @@ function actualizarTipoGestion(){
   // Obtenemos valor del tipo de gestion desde el formulario
   var nombre_tipo_gestion = document.getElementById("txt_nombre_tipo_gestion").value;
 
+  if(nombre_tipo_gestion.trim()==""){
+    alert("El campo nombre tipo de gestion no puede quedar en blanco");
+    return;
+  }
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
