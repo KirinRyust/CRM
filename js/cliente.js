@@ -151,38 +151,41 @@ function actualizarCliente(){
   var apellidos = document.getElementById("txt_apellidos").value;
   var email= document.getElementById("txt_email").value;
   var celular = document.getElementById("txt_celular").value;
+  if ((dv >= 0 && dv <= 9) || dv.toLowerCase() == 'k') {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+    const raw = JSON.stringify({
+      "id_cliente": id_cliente,
+      "dv": dv,
+      "nombres": nombres,
+      "apellidos": apellidos,
+      "email": email,
+      "celular": celular
+    });
 
-  const raw = JSON.stringify({
-    "id_cliente": id_cliente,
-    "dv": dv,
-    "nombres": nombres,
-    "apellidos": apellidos,
-    "email": email,
-    "celular": celular
-  });
+    const requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
 
-  const requestOptions = {
-    method: "PATCH",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow"
-  };
-
-  fetch("http://144.126.210.74:8080/api/cliente/"+ g_id_cliente, requestOptions)
-    .then((response) => {
-      if(response.status == 200){
-        alert("Cliente actualizado correctamente");
-        location.href="listar.html";
-      }
-      if(response.status == 400){
-        alert("Error al actualizar el cliente");
-      }
-    })
-    .then((result) => console.log(result))
-    .catch((error) => console.error(error));
+    fetch("http://144.126.210.74:8080/api/cliente/"+ g_id_cliente, requestOptions)
+      .then((response) => {
+        if(response.status == 200){
+          alert("Cliente actualizado correctamente");
+          location.href="listar.html";
+        }
+        if(response.status == 400){
+          alert("Error al actualizar el cliente");
+        }
+      })
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  }else{
+    alert("El DV debe ser un número entre 0 y 9 o la letra 'k'");
+  }
 }
 function eliminarCliente(){
 

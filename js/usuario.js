@@ -163,40 +163,43 @@ function actualizarUsuario(){
   var celular = document.getElementById("txt_celular").value;
   var usuario = document.getElementById("txt_username").value;
   var contraseña = document.getElementById("txt_password").value;
+  if ((dv >= 0 && dv <= 9) || dv.toUpperCase() === 'k') {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+    const raw = JSON.stringify({
+      "id_usuario": id_usuario,
+      "dv": dv,
+      "nombres": nombres,
+      "apellidos": apellidos,
+      "email": email,
+      "celular": celular,
+      "username":usuario,
+      "password": contraseña
+    });
 
-  const raw = JSON.stringify({
-    "id_usuario": id_usuario,
-    "dv": dv,
-    "nombres": nombres,
-    "apellidos": apellidos,
-    "email": email,
-    "celular": celular,
-    "username":usuario,
-    "password": contraseña
-  });
+    const requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
 
-  const requestOptions = {
-    method: "PATCH",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow"
-  };
-
-  fetch("http://144.126.210.74:8080/api/usuario/"+ g_id_usuario, requestOptions)
-    .then((response) => {
-      if(response.status == 200){
-        alert("Usuario actualizado correctamente")
-        location.href="listar.html";
-      }
-      if(response.status == 400){
-        alert("Error al actualizar usuario");
-      }
-    })
-    .then((result) => console.log(result))
-    .catch((error) => console.error(error));
+    fetch("http://144.126.210.74:8080/api/usuario/"+ g_id_usuario, requestOptions)
+      .then((response) => {
+        if(response.status == 200){
+          alert("Usuario actualizado correctamente")
+          location.href="listar.html";
+        }
+        if(response.status == 400){
+          alert("Error al actualizar usuario");
+        }
+      })
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+    }else{
+      alert("El DV debe ser un número entre 0 y 9 o la letra 'k'");
+    }
 }
 function eliminarUsuario(){
 
